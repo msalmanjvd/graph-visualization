@@ -1,6 +1,6 @@
-# Graph Visualiztion (Semantic Health)
+# Graph Visualiztion
 
-This project is hosted at https://semantic-health-assignment.vercel.app/ via vercel.
+This project is hosted at  via vercel.
 
 ## Available Scripts
 
