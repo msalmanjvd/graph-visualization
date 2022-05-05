@@ -1,25 +1,22 @@
-# Getting Started with Create React App
+# Graph Visualiztion (Semantic Health)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is hosted at https://semantic-health-assignment.vercel.app/ via vercel.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### `npm build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -27,20 +24,57 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `Architecture`
 
-### `yarn eject`
+create-react-app for bootstrapping app
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+recoil js for state managment
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+react-lineto package for drawing line between to points
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### `Graph Implementation`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Graph object looks like following.
+ {
+  undirected: true,
+  nodes: [
+    { key: "node-1", value: "node-1", xAxis: "0", yAxis: "0" },
+    { key: "node-2", value: "node-2", xAxis: "0", yAxis: "0" },
+    { key: "node-3", value: "node-3", xAxis: "0", yAxis: "0" },
+    { key: "node-4", value: "node-4", xAxis: "0", yAxis: "0" },
+    { key: "node-5", value: "node-5", xAxis: "0", yAxis: "0" },
+  ],
+  edges: [
+    ["node-1", "node-2"],
+    ["node-1", "node-3"],
+    ["node-2", "node-4"],
+    ["node-3", "node-4"],
+    ["node-4", "node-5"],
+  ],
+}
 
-## Learn More
+## Nodes 
+Nodes are points when user clicks on screen, node-[index of node in array + 1] is node identifier.
+xAxis position of node on xAxis and yAxis is it's postion on yAxis. They will be treated left and top in css styling.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Edges / Vertices 
+These are lines between two nodes. Edges will be drwan betwewn nodes using key as class names in JSX(using div). When given two classes LineTo packages draws line between these two divs. 
+
+## Neighbors 
+Neighbors are all nodes pointed from a single node. eg, if there are two egdes from node-1 (to node-2, node-2 respectively), then node-1 will have two neighbors that are node-2 and node-3. All edges pointed from a particular node are neighbors of that particular node.
+
+## PageRank 
+Initial page rank would be **1/Number of Nodes in grpah**.
+If a graph have three nodes (node-1, node-2 , node-3), initially all will have 1/3 = 0.333 pagerank.
+If any node have neighbors then its page rank would be divided among its neighbors. This node will have zero page rank. And **NodeRank/Neighbors** will be added to each neighbors node.
+
+If node-1 has two neighbors (node-2, node-3).
+Page rank of node-1 will be divided by 2(number of neighbors) . 0.333/2 = 0.166
+We will assign 0 to node-1, so page rank of node-1 will be zero.
+We will add 0.166 to page rank of node-2 and node-3 separately. .333+0.166 = .49
+
+**page rank of node-2 and node-3 will be .49 or .5**
+
+
+
