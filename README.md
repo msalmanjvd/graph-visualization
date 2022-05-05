@@ -1,4 +1,4 @@
-# Graph Visualiztion
+# Graph Visualization
 
 This project is hosted at https://graph-visualization.vercel.app/ via vercel.
 
