@@ -1,23 +1,20 @@
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { DropDown } from "../ui/DropDown";
 import { Button } from "../ui/Button";
 import { Modal } from "./../common/Modal";
 import { graphAtom } from "../../recoil/atoms/graph";
 import { useRecoilState } from "recoil";
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { GraphInterface } from "../../interfaces/graph";
 import { removeGraphEdge } from "../../utils/graph";
 import toast from "react-hot-toast";
 
 type IProps = {
   open: boolean;
   close: Dispatch<SetStateAction<boolean>>;
-  data: GraphInterface;
 };
 
 export const RemoveEdgeModal = ({
   open,
   close,
-  data,
 }: IProps): React.ReactElement => {
   const [graph, setGraph] = useRecoilState(graphAtom);
   const [node, setNode] = useState("");
@@ -39,7 +36,7 @@ export const RemoveEdgeModal = ({
       <>
         <div className="flex flex-row items-stretch justify-center space-x-4 w-full">
           <DropDown
-            data={data.edges}
+            data={graph.edges}
             onChange={setNode}
             key="key"
             type="edge"

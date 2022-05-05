@@ -5,23 +5,18 @@ import { Modal } from "./../common/Modal";
 import { graphAtom } from "../../recoil/atoms/graph";
 import { useRecoilState } from "recoil";
 import { useState } from "react";
-import { GraphInterface } from "../../interfaces/graph";
+
 import toast from "react-hot-toast";
 
 type IProps = {
   open: boolean;
   close: Dispatch<SetStateAction<boolean>>;
-  data: GraphInterface;
 };
 
-export const AddEdgeModal = ({
-  open,
-  close,
-  data,
-}: IProps): React.ReactElement => {
+export const AddEdgeModal = ({ open, close }: IProps): React.ReactElement => {
   const [graph, setGraph] = useRecoilState(graphAtom);
-  const [lineFrom, setLineFrom] = useState(data.nodes[0].key);
-  const [lineTo, setLineTo] = useState(data.nodes[1].key);
+  const [lineFrom, setLineFrom] = useState(graph.nodes[0].key);
+  const [lineTo, setLineTo] = useState(graph.nodes[1].key);
 
   const addNewEdge = (e: React.BaseSyntheticEvent) => {
     e.stopPropagation();
@@ -40,10 +35,10 @@ export const AddEdgeModal = ({
         <div className="flex flex-row items-stretch justify-center space-x-4 w-full p-3">
           <div className="flex items-center space-x-3">
             <span>From</span>{" "}
-            <DropDown data={data.nodes} onChange={setLineFrom} />
+            <DropDown data={graph.nodes} onChange={setLineFrom} />
           </div>
           <div className="flex items-center space-x-3">
-            <span>To</span> <DropDown data={data.nodes} onChange={setLineTo} />
+            <span>To</span> <DropDown data={graph.nodes} onChange={setLineTo} />
           </div>
         </div>
         {lineFrom.length && lineTo.length ? (

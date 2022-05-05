@@ -3,19 +3,13 @@ import { graphAtom } from "../../recoil/atoms/graph";
 import { useRecoilValue } from "recoil";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { pageRank } from "../../utils/graph";
-import { GraphInterface } from "../../interfaces/graph";
 
 type IProps = {
   open: boolean;
   close: Dispatch<SetStateAction<boolean>>;
-  data: GraphInterface;
 };
 
-export const PageRankModal = ({
-  open,
-  close,
-  data,
-}: IProps): React.ReactElement => {
+export const PageRankModal = ({ open, close }: IProps): React.ReactElement => {
   const graphData = useRecoilValue(graphAtom);
   const [pageRanksResult, setPageRanksResult] = useState([]);
 

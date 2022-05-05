@@ -33,7 +33,6 @@ export const Footer = (): React.ReactElement => {
     <>
       {graphData.nodes.length && (
         <>
-          {" "}
           <Toaster />
           <div className="fixed bottom-0 z-[10] w-screen flex flex-row space-x-3 justify-center items-center bg-violet-200 py-3">
             <Button
@@ -85,36 +84,20 @@ export const Footer = (): React.ReactElement => {
             <RemoveNodeModal
               open={removeNodeModal}
               close={setRemoveNodeModal}
-              data={graphData}
             />
           )}
           {removeEdgeModal && (
             <RemoveEdgeModal
               open={removeEdgeModal}
               close={setRemoveEdgeModal}
-              data={graphData}
             />
           )}
           {neighborModal && (
-            <FindNeighborsModal
-              open={neighborModal}
-              close={setNeighborModal}
-              data={graphData}
-            />
+            <FindNeighborsModal open={neighborModal} close={setNeighborModal} />
           )}
-          {edgeModal && (
-            <AddEdgeModal
-              open={edgeModal}
-              close={setEdgeModal}
-              data={graphData}
-            />
-          )}
+          {edgeModal && <AddEdgeModal open={edgeModal} close={setEdgeModal} />}
           {pageRankModal && (
-            <PageRankModal
-              open={pageRankModal}
-              close={setPageRankModal}
-              data={graphData}
-            />
+            <PageRankModal open={pageRankModal} close={setPageRankModal} />
           )}
         </>
       )}
