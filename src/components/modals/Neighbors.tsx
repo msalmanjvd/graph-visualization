@@ -40,7 +40,7 @@ export const FindNeighborsModal = ({
               {neighbors.map((node: NodeInterface, index: Number) => (
                 <React.Fragment key={index as React.Key}>
                   <GraphNode
-                    value={node.value}
+                    value={String(node)}
                     small={true}
                     position="none"
                     left={node.xAxis}
