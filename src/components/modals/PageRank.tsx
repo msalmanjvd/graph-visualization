@@ -9,9 +9,14 @@ type IProps = {
   close: Dispatch<SetStateAction<boolean>>;
 };
 
+type RankType = {
+  node: String;
+  rank: Number;
+};
+
 export const PageRankModal = ({ open, close }: IProps): React.ReactElement => {
   const graphData = useRecoilValue(graphAtom);
-  const [pageRanksResult, setPageRanksResult] = useState([]);
+  const [pageRanksResult, setPageRanksResult] = useState(Array<RankType>());
 
   useEffect(() => {
     const result = pageRank(graphData);
